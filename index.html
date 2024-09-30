@@ -6,7 +6,6 @@
      
     <title>مصطفى جميل كوريني</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style.css">
     <style>
         body {
             font-family: 'Tajawal', Arial, sans-serif;
@@ -124,23 +123,7 @@
             .modal-content {
                 width: 90%;
             }
-        }
-        
-        /* تنسيق عرض التاريخ والوقت */
-.datetime {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
-    color: #007bff;
-    background-color: #f9f9f9;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000; /* يجعل العنصر فوق العناصر الأخرى */
-}
-/* إعداد العنصر لعرض النصوص المتحركة */
+            /* تنسيق العنصر لعرض النصوص المتحركة */
 .rotating-text {
     position: fixed;
     top: 10px;
@@ -159,51 +142,46 @@
     text-align: center; /* محاذاة النص في الوسط */
 }
 
-/* تأثير التلاشي والدوران */
+/* تنسيق التاريخ والوقت في الزاوية اليسرى */
+.date-time {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgba(0, 0, 0, 0.7); /* لون أسود شبه شفاف */
+    background-color: rgba(255, 255, 255, 0.8); /* خلفية شبه شفافة */
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+    z-index: 1000;
+}
+
+/* تأثير اختفاء وظهور النص */
 @keyframes fadeInOut {
-    0%, 20% {
-        opacity: 0;
-        transform: rotate(0deg);
-    }
-    25%, 75% {
-        opacity: 1;
-        transform: rotate(360deg);
-    }
-    80%, 100% {
-        opacity: 0;
-        transform: rotate(0deg);
-    }
+    0%, 100% { opacity: 0; }
+    25%, 75% { opacity: 1; }
 }
 
-/* تنسيق النص الفردي */
-.rotating-text span {
-    display: none;
-    animation: textAnimation 10s infinite;
-}
+        
+<!-- عنصر عرض التاريخ والوقت -->
+<div class="date-time" id="dateTimeDisplay"></div>
 
-/* عرض النص الواحد بشكل تدريجي */
-@keyframes textAnimation {
-    0%, 19% {
-        opacity: 0;
-    }
-    20%, 39% {
-        opacity: 1;
-    }
-    40%, 100% {
-        opacity: 0;
-    }
-}
-
-    </style>
-</head>
-<body>
-    <div class="rotating-text">
+<!-- عنصر النص المتحرك -->
+<div class="rotating-text">
     <span>مبرمج محترف</span>
     <span>معالج بيانات</span>
     <span>محلل بيانات</span>
     <span>أخصائي بيانات</span>
     <span>إدارة المعلومات</span>
 </div>
+
+<script src="script.js"></script>   
+    
+   
+    </style>
+</head>
+
     <script src="script.js"></script>
 <div id="datetime" class="datetime"></div>
 
@@ -402,47 +380,22 @@
     function closeModal(modalId) {
         document.getElementById(modalId).style.display = 'none';
     }
-    function updateDateTime() {
+    // كود JavaScript لعرض الوقت والتاريخ بشكل محدث
+function updateTime() {
+    const dateTimeDisplay = document.getElementById("dateTimeDisplay");
     const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0'); // الأشهر تبدأ من 0 لذا نضيف 1
-    const day = String(now.getDate()).padStart(2, '0');
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-
-    // تنسيق التاريخ والوقت
-    const formattedDate = `${day}/${month}/${year}`;
-    const formattedTime = `${hours}:${minutes}:${seconds}`;
-
+    
+    // الحصول على التاريخ والوقت
+    const date = now.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
+    const time = now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    
     // عرض التاريخ والوقت
-    document.getElementById('datetime').textContent = `📅 ${formattedDate} ⏰ ${formattedTime}`;
+    dateTimeDisplay.textContent = `${date} - ${time}`;
 }
 
 // تحديث الوقت كل ثانية
-setInterval(updateDateTime, 1000);
-
-// استدعاء الوظيفة مباشرة لتحديث الوقت عند تحميل الصفحة
-updateDateTime();
-  }
-    const texts = document.querySelectorAll('.rotating-text span');
-let currentTextIndex = 0;
-
-function rotateText() {
-    texts.forEach((text, index) => {
-        text.style.display = 'none';
-    });
-    texts[currentTextIndex].style.display = 'inline';
-
-    currentTextIndex = (currentTextIndex + 1) % texts.length;
-}
-
-// تبديل النصوص كل 4 ثوانٍ
-setInterval(rotateText, 4000);
-
-// عرض النص الأول مباشرة عند التحميل
-rotateText();
-}
+setInterval(updateTime, 1000);
+updateTime();
 
 </script>
 
