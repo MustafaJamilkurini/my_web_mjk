@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     
     <title>مصطفى جميل كوريني</title>
     <link rel="stylesheet" href="style.css">
     <style>
@@ -123,89 +122,81 @@
             .modal-content {
                 width: 90%;
             }
-            /* تنسيق العنصر لعرض النصوص المتحركة */
-.rotating-text {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    font-family: 'Arial', sans-serif;
-    color: rgba(0, 123, 255, 0.8); /* لون أزرق شفاف */
-    padding: 10px;
-    border: 2px solid rgba(0, 123, 255, 0.5); /* حواف جميلة شفافة */
-    border-radius: 15px; /* زوايا دائرية */
-    background-color: rgba(255, 255, 255, 0.2); /* خلفية شفافة */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* ظل خفيف */
-    backdrop-filter: blur(10px); /* تأثير مائي */
-    z-index: 1000;
-    animation: fadeInOut 20s infinite; /* تأثير الدوران والاختفاء */
-    text-align: center; /* محاذاة النص في الوسط */
-}
+        }
+        /* تنسيق النص المتحرك */
+        .rotating-text {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            font-family: 'Arial', sans-serif;
+            color: rgba(0, 123, 255, 0.8); /* لون أزرق شفاف */
+            padding: 10px;
+            border: 2px solid rgba(0, 123, 255, 0.5); /* حواف جميلة شفافة */
+            border-radius: 15px; /* زوايا دائرية */
+            background-color: rgba(255, 255, 255, 0.2); /* خلفية شفافة */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+            backdrop-filter: blur(10px); /* تأثير مائي */
+            z-index: 1000;
+            animation: fadeInOut 20s infinite; /* تأثير الدوران والاختفاء */
+            text-align: center; /* محاذاة النص في الوسط */
+        }
 
-/* تنسيق التاريخ والوقت في الزاوية اليسرى */
-.date-time {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
-    color: rgba(0, 0, 0, 0.7); /* لون أسود شبه شفاف */
-    background-color: rgba(255, 255, 255, 0.8); /* خلفية شبه شفافة */
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* ظل خفيف */
-    z-index: 1000;
-}
+        /* تنسيق التاريخ والوقت في الزاوية اليسرى */
+        .date-time {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            color: rgba(0, 0, 0, 0.7); /* لون أسود شبه شفاف */
+            background-color: rgba(255, 255, 255, 0.8); /* خلفية شبه شفافة */
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+            z-index: 1000;
+        }
 
-/* تأثير اختفاء وظهور النص */
-@keyframes fadeInOut {
-    0%, 100% { opacity: 0; }
-    25%, 75% { opacity: 1; }
-}
-
-        
-<!-- عنصر عرض التاريخ والوقت -->
-<div class="date-time" id="dateTimeDisplay"></div>
-
-<!-- عنصر النص المتحرك -->
-<div class="rotating-text">
-    <span>مبرمج محترف</span>
-    <span>معالج بيانات</span>
-    <span>محلل بيانات</span>
-    <span>أخصائي بيانات</span>
-    <span>إدارة المعلومات</span>
-</div>
-
-<script src="script.js"></script>   
-    
-   
+        /* تأثير اختفاء وظهور النص */
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            25%, 75% { opacity: 1; }
+        }
     </style>
 </head>
+<body>
 
-    <script src="script.js"></script>
-<div id="datetime" class="datetime"></div>
+    <!-- عنصر عرض التاريخ والوقت -->
+    <div class="date-time" id="dateTimeDisplay"></div>
 
-<script src="script.js"></script>
-<header>
-    
-    <h1>     CV     السيرة الذاتية    </h1>
-</header>
+    <!-- عنصر النص المتحرك -->
+    <div class="rotating-text">
+        <span>مبرمج محترف</span>
+        <span>معالج بيانات</span>
+        <span>محلل بيانات</span>
+        <span>أخصائي بيانات</span>
+        <span>إدارة المعلومات</span>
+    </div>
 
-<div class="profile">
-    <img src="mustafa.jpg" alt="مصطفى جميل كوريني">
-    <div>
-        <h2>معلومات التواصل</h2>
-        <h2>Contact information</h2>
-        <p>الموقع : إدلب سلقين، سوريا</p>
-        <p>البريد الإلكتروتي:<a href="mailto:mustafakurini@gmail.com">📧</a></p>
-         <p>واتساب:<a href="https://wa.me/qr/YMIQKDBBZKPTH1">📱</a></p>
-         <p>يوتيوب:<a href="https://youtube.com/channel/UC8n4xrDU0XdIdVjM1WByppQ?si=PlEc17WHLZYC5xyq">📹</a></p>
-        <div class="contact-icon">
-            <a href="mailto:mustafakurini@gmail.com">📧</a>
-            <a href="https://www.linkedin.com/in/mustafakurini">🔗</a>
+    <header>
+        <h1>السيرة الذاتية - CV</h1>
+    </header>
+
+    <div class="profile">
+        <img src="mustafa.jpg" alt="مصطفى جميل كوريني">
+        <div>
+            <h2>معلومات التواصل</h2>
+            <h2>Contact information</h2>
+            <p>الموقع : إدلب سلقين، سوريا</p>
+            <p>البريد الإلكتروتي: <a href="mailto:mustafakurini@gmail.com">📧</a></p>
+            <p>واتساب: <a href="https://wa.me/qr/YMIQKDBBZKPTH1">📱</a></p>
+            <p>يوتيوب: <a href="https://youtube.com/channel/UC8n4xrDU0XdIdVjM1WByppQ?si=PlEc17WHLZYC5xyq">📹</a></p>
+            <div class="contact-icon">
+                <a href="mailto:mustafakurini@gmail.com">📧</a>
+                <a href="https://www.linkedin.com/in/mustafakurini">🔗</a>
+            </div>
         </div>
     </div>
-</div>
 
 <div class="buttons">
     <button class="button" onclick="toggleContent('education')">التعليم</button>
@@ -362,40 +353,32 @@
 </div>
 
 <script>
-    function toggleContent(id) {
-        const contents = document.querySelectorAll('.content');
-        contents.forEach(content => {
-            if (content.id === id) {
-                content.style.display = content.style.display === 'block' ? 'none' : 'block';
-            } else {
-                content.style.display = 'none';
-            }
-        });
-    }
+      // عرض التاريخ والوقت الحالي
+        function updateDateTime() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true };
+            const dateTimeString = now.toLocaleString('ar-SA', options);
+            document.getElementById('dateTimeDisplay').innerText = dateTimeString;
+        }
 
-    function openModal(modalId) {
-        document.getElementById(modalId).style.display = 'flex';
-    }
+        setInterval(updateDateTime, 1000); // تحديث التاريخ والوقت كل ثانية
 
-    function closeModal(modalId) {
-        document.getElementById(modalId).style.display = 'none';
-    }
-    // كود JavaScript لعرض الوقت والتاريخ بشكل محدث
-function updateTime() {
-    const dateTimeDisplay = document.getElementById("dateTimeDisplay");
-    const now = new Date();
-    
-    // الحصول على التاريخ والوقت
-    const date = now.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
-    const time = now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    
-    // عرض التاريخ والوقت
-    dateTimeDisplay.textContent = `${date} - ${time}`;
-}
+        function toggleContent(id) {
+            const content = document.getElementById(id);
+            const allContents = document.querySelectorAll('.content');
+            allContents.forEach(c => {
+                if (c !== content) c.style.display = 'none'; // إخفاء جميع المحتويات
+            });
+            content.style.display = content.style.display === 'block' ? 'none' : 'block'; // تبديل المحتوى المحدد
+        }
 
-// تحديث الوقت كل ثانية
-setInterval(updateTime, 1000);
-updateTime();
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
 
 </script>
 
