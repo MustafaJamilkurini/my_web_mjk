@@ -6,6 +6,7 @@
      
     <title>مصطفى جميل كوريني</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             font-family: 'Tajawal', Arial, sans-serif;
@@ -124,6 +125,7 @@
                 width: 90%;
             }
         }
+        
         /* تنسيق عرض التاريخ والوقت */
 .datetime {
     position: fixed;
@@ -138,10 +140,71 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000; /* يجعل العنصر فوق العناصر الأخرى */
 }
+/* إعداد العنصر لعرض النصوص المتحركة */
+.rotating-text {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    font-family: 'Arial', sans-serif;
+    color: rgba(0, 123, 255, 0.8); /* لون أزرق شفاف */
+    padding: 10px;
+    border: 2px solid rgba(0, 123, 255, 0.5); /* حواف جميلة شفافة */
+    border-radius: 15px; /* زوايا دائرية */
+    background-color: rgba(255, 255, 255, 0.2); /* خلفية شفافة */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+    backdrop-filter: blur(10px); /* تأثير مائي */
+    z-index: 1000;
+    animation: fadeInOut 20s infinite; /* تأثير الدوران والاختفاء */
+    text-align: center; /* محاذاة النص في الوسط */
+}
+
+/* تأثير التلاشي والدوران */
+@keyframes fadeInOut {
+    0%, 20% {
+        opacity: 0;
+        transform: rotate(0deg);
+    }
+    25%, 75% {
+        opacity: 1;
+        transform: rotate(360deg);
+    }
+    80%, 100% {
+        opacity: 0;
+        transform: rotate(0deg);
+    }
+}
+
+/* تنسيق النص الفردي */
+.rotating-text span {
+    display: none;
+    animation: textAnimation 10s infinite;
+}
+
+/* عرض النص الواحد بشكل تدريجي */
+@keyframes textAnimation {
+    0%, 19% {
+        opacity: 0;
+    }
+    20%, 39% {
+        opacity: 1;
+    }
+    40%, 100% {
+        opacity: 0;
+    }
+}
 
     </style>
 </head>
 <body>
+    <div class="rotating-text">
+    <span>مبرمج محترف</span>
+    <span>معالج بيانات</span>
+    <span>محلل بيانات</span>
+    <span>أخصائي بيانات</span>
+    <span>إدارة المعلومات</span>
+</div>
+    <script src="script.js"></script>
 <div id="datetime" class="datetime"></div>
 
 <script src="script.js"></script>
@@ -361,6 +424,25 @@ setInterval(updateDateTime, 1000);
 
 // استدعاء الوظيفة مباشرة لتحديث الوقت عند تحميل الصفحة
 updateDateTime();
+  }
+    const texts = document.querySelectorAll('.rotating-text span');
+let currentTextIndex = 0;
+
+function rotateText() {
+    texts.forEach((text, index) => {
+        text.style.display = 'none';
+    });
+    texts[currentTextIndex].style.display = 'inline';
+
+    currentTextIndex = (currentTextIndex + 1) % texts.length;
+}
+
+// تبديل النصوص كل 4 ثوانٍ
+setInterval(rotateText, 4000);
+
+// عرض النص الأول مباشرة عند التحميل
+rotateText();
+}
 
 </script>
 
