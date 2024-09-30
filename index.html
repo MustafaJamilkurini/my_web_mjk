@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
     <title>مصطفى جميل كوريني</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             font-family: 'Tajawal', Arial, sans-serif;
@@ -122,10 +124,27 @@
                 width: 90%;
             }
         }
+        /* تنسيق عرض التاريخ والوقت */
+.datetime {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #007bff;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* يجعل العنصر فوق العناصر الأخرى */
+}
+
     </style>
 </head>
 <body>
+<div id="datetime" class="datetime"></div>
 
+<script src="script.js"></script>
 <header>
     <h1>  السيرة الذاتية  </h1>
     <h1>     CV     </h1>
@@ -320,6 +339,29 @@
     function closeModal(modalId) {
         document.getElementById(modalId).style.display = 'none';
     }
+    function updateDateTime() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // الأشهر تبدأ من 0 لذا نضيف 1
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    // تنسيق التاريخ والوقت
+    const formattedDate = `${day}/${month}/${year}`;
+    const formattedTime = `${hours}:${minutes}:${seconds}`;
+
+    // عرض التاريخ والوقت
+    document.getElementById('datetime').textContent = `📅 ${formattedDate} ⏰ ${formattedTime}`;
+}
+
+// تحديث الوقت كل ثانية
+setInterval(updateDateTime, 1000);
+
+// استدعاء الوظيفة مباشرة لتحديث الوقت عند تحميل الصفحة
+updateDateTime();
+
 </script>
 
 </body>
