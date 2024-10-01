@@ -6,19 +6,39 @@
     <title>مصطفى جميل كوريني</title>
     <style>
         body {
+            .experience-button {
+    font-weight: bold;   /* لجعل النص غامق */
+    font-size: 1.2em;    /* لجعل النص أكبر (يمكنك تعديل الحجم كما تفضل) */
+    /* يمكنك إضافة المزيد من الخصائص هنا إذا لزم الأمر */
+}
+
+            margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('mdmd.jpg') no-repeat center center fixed;
+    background-size: cover; /* يجعل الخلفية تغطي الموقع بالكامل */
+}
+
+
+
+.content h1, .content p {
+    color: black; /* يمكنك تغيير لون النص */
+}
             display: flex;
             flex-direction: column;
             min-height: 100vh; /* لجعل الفوتر في الأسفل */
             margin: 0;
-        }
+        
         footer {
-            text-align: center; /* لجعل النص في الوسط */
-            margin-top: auto; /* دفع الفوتر للأسفل */
-            padding: 10px;
-            background-color: #f1f1f1; /* لون خلفية الفوتر */
-        }
-    font-family: Arial, sans-serif;
+    text-align: center; /* لجعل النص في الوسط */
+    margin-top: auto; /* دفع الفوتر للأسفل */
+    padding: 10px;
+    background-color: transparent; /* لجعل الخلفية شفافة */
+    border-top: 1px solid #f1f1f1; /* للحفاظ على الحواف */
 }
+
+    font-family: Arial, sans-serif;
+
 
 .container {
     display: grid;
@@ -231,6 +251,14 @@
         opacity: 1;
         transform: translateY(-20px);
     }
+}
+footer {
+    text-align: center;  /* لضبط النص في المنتصف */
+    position: relative;  /* يجعل موضع العنصر نسبي */
+    bottom: 0;           /* محاذاة النص في الأسفل */
+    width: 100%;        /* توسيع الـ footer ليغطي عرض الصفحة بالكامل */
+  
+    padding: 10px 0;    /* إضافة حشوة من الأعلى والأسفل */
 }
 
         
