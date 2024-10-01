@@ -4,277 +4,431 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مصطفى جميل كوريني</title>
-    <link rel="stylesheet" href="style.css">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
+            transition: background 0.3s, color 0.3s;
         }
-
-        .moving-text {
-            position: absolute;
-            top: 10px;
-            right: 0;
-            color: white;
-            white-space: nowrap;
-            animation: circular-motion 10s infinite;
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
         }
-
-        @keyframes circular-motion {
-            0% {
-                transform: translate(0, 0);
-            }
-            25% {
-                transform: translate(100px, 0);
-            }
-            50% {
-                transform: translate(100px, 100px);
-            }
-            75% {
-                transform: translate(0, 100px);
-            }
-            100% {
-                transform: translate(0, 0);
-                opacity: 0; /* يجعل النص يختفي */
-            }
-        }
-
-        #date-time {
+        .profile {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            font-size: 18px;
-            color: #333;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .profile img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            position: relative;
+            z-index: 2;
+            animation: pulse 3s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-5px); }
+            50% { transform: translateY(5px); }
+            75% { transform: translateY(-5px); }
+        }
+        .contact {
+            text-align: center;
             margin-bottom: 20px;
         }
-
-        .icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 5px;
+        .contact h2 {
+            margin: 0;
         }
-
+        .contact p {
+            margin: 5px 0;
+        }
+        .contact-icon a {
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 24px;
+        }
+        body.day-mode {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        body.night-mode {
+            background-color: #1a1e29;
+            color: #ffffff;
+        }
         .modal {
             display: none;
             position: fixed;
-            z-index: 1;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
         }
-
         .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
+            background-color: white;
             padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close-btn:hover,
-        .close-btn:focus {
+            border-radius: 10px;
             color: black;
-            text-decoration: none;
-            cursor: pointer;
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            overflow: auto;
         }
-
-        .references-table {
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .date-time {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 18px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .buttons button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 2px solid #000;
+            background-color: transparent;
+            color: #0000FF;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+            animation: wave 2s infinite; /* Add wave animation */
+        }
+        .buttons button:hover {
+            background-color: #000;
+            color: #fff;
+        }
+        .mode-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 30px;
+            transition: color 0.3s;
+        }
+        .mode-button:focus {
+            outline: none;
+        }
+        .experience-list {
+            display: none; /* Initially hidden */
+            margin-top: 20px;
+        }
+        table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
         }
-
-        .references-table th, .references-table td {
-            border: 1px solid #ddd;
+        table, th, td {
+            border: 1px solid black;
             padding: 8px;
-            text-align: right;
+            text-align: left;
         }
-
-        .references-table th {
+        th {
             background-color: #f2f2f2;
-        }
-
-        .content {
-            margin: 20px 0;
-        }
-
-        .profile {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .profile img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            margin-right: 20px;
-        }
-
-        .buttons {
-            margin: 20px 0;
-        }
-
-        .button {
-            padding: 10px 15px;
-            margin: 5px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .button:hover {
-            background-color: #0056b3;
         }
     </style>
 </head>
-<body>
+<body class="day-mode">
 
-    <div id="date-time">
-        <img src="calendar-icon.png" alt="Calendar Icon" class="icon">
-        <span id="dateTimeDisplay"></span>
-    </div>
-    <div class="moving-text">مبرمج محترف   معالج بيانات   محلل بيانات    أخصائي بيانات   إدارة المعلومات  </div>
+<header>
+    <h1>السيرة الذاتية - CV</h1>
+    <div class="date-time" id="date-time"></div>
+</header>
 
-    <header>
-        <h1>السيرة الذاتية - CV</h1>
-    </header>
-
-    <div class="profile">
-        <img src="mustafa.jpg" alt="مصطفى جميل كوريني">
-        <div>
-            <h2>معلومات التواصل</h2>
-            <h2>Contact information</h2>
-            <p>الموقع : إدلب سلقين، سوريا</p>
-            <p>البريد الإلكتروتي: <a href="mailto:mustafakurini@gmail.com">📧</a></p>
-            <p>واتساب: <a href="https://wa.me/qr/YMIQKDBBZKPTH1">📱</a></p>
-            <p>يوتيوب: <a href="https://youtube.com/channel/UC8n4xrDU0XdIdVjM1WByppQ?si=PlEc17WHLZYC5xyq">📹</a></p>
-            <div class="contact-icon">
-                <a href="mailto:mustafakurini@gmail.com">📧</a>
-                <a href="https://www.linkedin.com/in/mustafakurini">🔗</a>
-            </div>
+<div class="profile">
+    <img src="mustafa.jpg" alt="معلومات التواصل Contact information">
+    <div class="contact">
+        <h2>مصطفى جميل كوريني</h2>
+        <p class="site-location">الموقع: سلقين - إدلب - سوريا</p>
+        <div class="contact-icon">
+            <a href="mailto:mustafakurini@gmail.com">📧</a>
+            <a href="https://wa.me/qr/YMIQKDBBZKPTH1">📱</a>
+            <a href="https://youtube.com/channel/UC8n4xrDU0XdIdVjM1WByppQ?si=PlEc17WHLZYC5xyq">📹</a>
+            <a href="https://www.linkedin.com/in/mustafakurini">🔗</a>
         </div>
     </div>
+</div>
 
-    <div class="buttons">
-        <button class="button" onclick="toggleContent('education')">التعليم</button>
-        <button class="button" onclick="toggleContent('experience')">الخبرات العملية</button>
-        <button class="button" onclick="toggleContent('references')">المراجع</button>
-        <button class="button" onclick="openModal('summaryModal')">الملخص</button>
-        <button class="button" onclick="openModal('skillsModal')">المهارات</button>
-        <button class="button" onclick="openModal('certificatesModal')">شهادات التدريب</button>
+<button class="mode-button" id="mode-toggle" onclick="toggleMode()">🌞</button>
+
+<div class="buttons">
+    <button onclick="openModal('summary')">الملخص</button>
+    <button onclick="openModal('education')">التعليم</button>
+    <button onclick="toggleExperience()">الخبرات العملية</button> <!-- Unchanged -->
+    <button onclick="openModal('references')">المراجع</button>
+    <button onclick="openModal('projects')">الشهادات التدريبية</button>
+    <button onclick="openModal('skills')">المهارات - اللغات</button>
+</div>
+
+<!-- نافذة الملخص -->
+<div id="summary" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('summary')">&times;</span>
+        <h3>الملخص</h3>
+        <p>أنا مرشح موثوق ينجح في إدارة الأولويات المتعددة بروح إيجابية. حصلت مؤخرًا على شهادات في إدارة البيانات وتحليل البيانات من Microsoft، وأخصائي دعم تكنولوجيا المعلومات من Google. أتمتع بمهارات قوية في تطوير مواقع الويب، حيث أستخدم التقنيات الحديثة لخلق تجارب مستخدم سلسة وفعالة. بفضل خبرتي في إدارة المعلومات، أستطيع تحويل البيانات إلى رؤى عملية تدعم اتخاذ القرارات الاستراتيجية.</p>
+        <p>أنا مؤمن بأن الابتكار هو قلب كل مشروع ناجح، وأسعى باستمرار لتطوير مهاراتي وتوسيع معرفتي. طموحي لا يعرف الحدود، وأنا متحمس لمواجهة التحديات الجديدة التي تتيح لي الفرصة لإحداث فرق حقيقي في مجال تطوير التكنولوجيا. إنني أعتبر كل مشروع فرصة لإحداث تأثير إيجابي، وأؤمن بقوة أن التعاون والشغف هما مفتاح النجاح. سأكون شغوفًا بالعمل مع فريق يشارك نفس الرؤية والطموح لتحقيق أهداف مشتركة. دعونا نبني المستقبل معًا، حيث تتحد الأفكار الجريئة والتقنيات المتطورة لتحقيق ما هو أبعد من المتوقع.</p>
     </div>
+</div>
 
-    <!-- ملخص -->
-    <div id="summaryModal" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('summaryModal')">X</button>
-            <h2>الملخص</h2>
-            <p>مرشح موثوق ينجح في إدارة الأولويات المتعددة بروح إيجابية. حصلت مؤخرًا على شهادات في إدارة البيانات وتحليل البيانات من Microsoft وأخصائي دعم تكنولوجيا المعلومات من Google. لدي مهارات وخبرة مسؤول إدارة المعلومات.</p>
-        </div>
-    </div>
-
-    <div id="education" class="content">
+<!-- نافذة التعليم -->
+<div id="education" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('education')">&times;</span>
         <h3>التعليم</h3>
         <p>المعهد التقاني للحاسوب - اللاذقية، سوريا (أكتوبر 2016 - يوليو 2018) - هندسة البرمجيات</p>
         <a href="https://drive.google.com/file/d/1RbPLUW6UTb6jpW95A1AJ5wbEDuuayPud/view?usp=sharing.pdf" target="_blank">عرض الشهادة</a>
     </div>
+</div>
 
-    <div id="experience" class="content">
-        <h3>الخبرات العملية</h3>
-        <h4>مساعد مراقبة وتقييم ميداني</h4>
-        <p>فبراير 2024 – يوليو 2024</p>
-        <p>الرابطة الطبية للمغتربين السوريين (SEMA) - كفر تخاريم - إدلب</p>
-        <ul>
-            <li>تصميم أدوات جمع البيانات المختلفة عند الطلب من المسؤول التقني لجمع البيانات الكمية والنوعية.</li>
-            <li>مراقبة أنشطة المشروع وفقًا لخطة التقييم.</li>
-            <li>توثيق الدروس المستفادة وتسجيل الخبرات المكتسبة خلال المشروع.</li>
-            <li>كتابة تقارير المراقبة والتقييم وإعداد تقارير حول تقدم المشروع.</li>
-            <li>إعداد تقارير ما بعد التوزيع PDM لتقييم تأثير التوزيع بعد تنفيذه.</li>
-            <li>المعرفة بجمع البيانات والإدارة وفهم كيفية جمع وتحليل البيانات وإدارة الأنشطة.</li>
-        </ul>
+<!-- الخبرات العملية -->
+<div id="experience" class="experience-list">
+    <h3>الخبرات العملية</h3>
+    <ul>
+        <li>
+            <strong>مساعد مراقبة وتقييم ميداني</strong> <br>
+            <em>فبراير 2024 – يوليو 2024</em> <br>
+            <em>الرابطة الطبية للمغتربين السوريين (SEMA) - كفر تخاريم - إدلب</em>
+            <ul>
+                <li>تصميم أدوات جمع البيانات المختلفة عند الطلب من المسؤول التقني لجمع البيانات الكمية والنوعية: تصميم إستمارات Kobo Toolbox خاصة بقسم MEAL بما يتناسب مع الإطار المنطقي للمشروع ومدخلاته ومخرجاته وربطها من api/v2 مع Sheets Google من خلال دالة IMPORTDATA وبعدها مشاركة معلومات قاعدة بيانات المشروع مع Power BI-Power Query لمعالجتها وتحليلها واستخلاص بيانات نظيفة وتصميم تقارير تفاعلية تسهل الرؤية لأصحاب القرار من مسؤول المراقبة الأعلى في سوريا وفي الخارج.</li>
+                <li>مراقبة أنشطة المشروع: متابعة سير أنشطة المشروع وفقًا لخطة التقييم.</li>
+                <li>توثيق الدروس المستفادة: تسجيل الخبرات المكتسبة خلال المشروع.</li>
+                <li>كتابة تقارير المراقبة والتقييم: إعداد تقارير حول تقدم المشروع ونتائجه النهائية.</li>
+                <li>إعداد تقارير ما بعد التوزيع PDM: تقارير لتقييم تأثير التوزيع بعد تنفيذه.</li>
+                <li>المعرفة بجمع البيانات والإدارة: فهم كيفية جمع وتحليل البيانات وإدارة الأنشطة.</li>
+            </ul>
+        </li>
+        <li>
+            <strong>مدخل بيانات (التغذية – OTP/WV)</strong> <br>
+            <em>أغسطس 2023 - ديسمبر 2023</em> <br>
+            <em>الرابطة الطبية للمغتربين السوريين (SEMA) - كفر تخاريم مشفى وسيم حسينو- إدلب</em>
+            <ul>
+                <li>إدارة العمليات الإدارية لفريق التغذية: بما في ذلك تنظيم جداول العمل والإجازات.</li>
+                <li>إدخال البيانات لمشروع التغذية بدقة: إرسال البيانات إلى مسؤول المعلومات الصحية بعد مراجعة شاملة وتخزينها بدقة على السحابة Drive ومشاركة الورقيات اليومية المسحوبة Scanner مع مشرف ومنسق المشروع وقاعدة البيانات المعتمدة KoBo.</li>
+                <li>مراقبة حركة سيارة نقل فريق الاستجابة: توثيق حركة المركبات بشكل يومي وشهري.</li>
+                <li>توثيق الأدوية الدورية: الاحتفاظ بسجلات الأدوية بانتظام وضمان ظروف التخزين المناسبة للأدوية.</li>
+            </ul>
+        </li>
+        <li>
+            <strong>مدخل بيانات (الصحة - عيادة متنقلة help Age / Mc-Ehsim)</strong> <br>
+            <em>مايو 2023 - يوليو 2023</em> <br>
+            <em>الرابطة الطبية للمغتربين السوريين (SEMA) - (احسم - بليون - المغارة - ابدتا - الرامي) إدلب</em>
+            <ul>
+                <li>إدارة الشؤون الإدارية: إدارة الشؤون الإدارية للموظفين الأطباء، والقابلات، وموظفي الصحة المجتمعية، وموظفي دعم الصحة النفسية، وإدارة الحالات.</li>
+                <li>مراقبة حركة العيادة المتنقلة والأمان: مراقبة التوثيق اليومي لحركة العيادة المتنقلة والأمان، وضمان مستويات كافية من الوقود والزيت، والإشراف على بروتوكولات السلامة.</li>
+                <li>توثيق الأدوية: توثيق الأدوية المستلمة، والمستهلكة، والمُدَوَّرة يومياً، أسبوعياً وشهرياً، وضمان ظروف التخزين المناسبة.</li>
+                <li>إدخال البيانات وإعداد التقارير: إعداد وتقديم تقارير بيانات المستفيدين الشهرية ونصف الشهرية في EXCEL / DHIS2 كما هو معتمد من قبل المنظمة، ورفعها إلى السحابة المخصصة ومشاركة البيانات مع المسؤول التقني ومنسق المشروع ومدير المشروع، وإعداد تقارير EWARN الأسبوعية لتقديمها لممثل EWARN.</li>
+                <li>إدارة اللوجستيات: إدارة طلبات التمويل ومراقبة السلف النقدية والمشتريات مع منسق المشروع ومدير المشروع، وتدقيق جداول الرواتب وسجلات الوقود لمركبة العيادة المتنقلة، والتنسيق مع مسؤول اللوجستيات في المهام المالية.</li>
+            </ul>
+        </li>
+        <li>
+            <strong>مسؤول إدخال البيانات والإحصائيات</strong> <br>
+            <em>أكتوبر 2020 - أبريل 2022</em> <br>
+            <em>مديرية الخدمات لمنطقة حارم - حارم - إدلب</em>
+            <ul>
+                <li>إدخال بيانات إدارية ومراسلات كتب موجهة لوزارة الخدمات ومديرية الخدمات الفنية العامة.</li>
+                <li>بيانات الموارد البشرية وحركة المركبات.</li>
+                <li>مراسلة المجالس المحلية التابعة لمنطقة حارم وجمع بيانات المستفيدين والمزارعين بالقرى من أبقار وزراعة ودواجن وماعز وأسمدة ومواد زراعية عبر قاعدة بيانات Kobo Toolbox، وتصديرها لملف Excel ومعالجتها وتحليلها ومشاركة الملف مع مديرية التنمية في حارم.</li>
+                <li>إدخال بيانات المكتب الفني - إعداد التقارير والتوثيق.</li>
+            </ul>
+        </li>
+        <li>
+            <strong>مدخل بيانات (الصحة)</strong> <br>
+            <em>أغسطس 2019 - مايو 2020</em> <br>
+            <em>مركز الرعاية الصحية الأولية / Relief International - سلقين - إدلب</em>
+            <ul>
+                <li>إدارة وتأمين بيانات المرضى: إدارة وتأمين بيانات المرضى إلكترونياً وعلى الورق، ضمان دقة البيانات، وإكمال المعلومات الناقصة.</li>
+                <li>إدخال البيانات وإعداد التقارير: إعداد التقارير الإحصائية والسردية، إرسال التقارير إلى ممثل EWARN.</li>
+                <li>التوثيق والنسخ الاحتياطي للبيانات: طباعة السجلات والمستندات الأخرى، إعداد النسخ الاحتياطية للبيانات، وتحديث البيانات وفقاً للتحديثات الطبية.</li>
+                <li>تنظيم البيانات والتحقق منها: مسح وتنظيم البيانات والمستندات، مراجعة والتحقق من دقة عملية إدخال البيانات، وإعداد بيانات العمل مع التواصل مع فريق حماية البيانات التقنية.</li>
+            </ul>
+        </li>
+    </ul>
+</div>
 
-        <h4>مدخل بيانات (التغذية – OTP/WV)</h4>
-        <p>أغسطس 2023 - ديسمبر 2023</p>
-        <p>الرابطة الطبية للمغتربين السوريين (SEMA) - كفر تخاريم، مشفى وسيم حسينو - إدلب</p>
-        <ul>
-            <li>إدارة العمليات الإدارية لفريق التغذية، بما في ذلك تنظيم جداول العمل والإجازات.</li>
-            <li>إدخال البيانات لمشروع التغذية بدقة وإرسال البيانات إلى مسؤول المعلومات الصحية.</li>
-            <li>مراقبة حركة سيارة نقل فريق الاستجابة وتوثيق حركة المركبات بشكل يومي.</li>
-            <li>توثيق الأدوية الدورية وضمان ظروف التخزين المناسبة.</li>
-        </ul>
 
-        <h4>مدخل بيانات (الصحة - عيادة متنقلة help Age /Mc-Ehsim)</h4>
-        <p>مايو 2023 - يوليو 2023</p>
-        <p>الرابطة الطبية للمغتربين السوريين (SEMA) - إدلب</p>
-        <ul>
-            <li>إدارة الشؤون الإدارية للموظفين، بما في ذلك جمع وتحليل البيانات.</li>
-            <li>تدوين تقارير عن زيارات المرضى إلى العيادة المتنقلة.</li>
-        </ul>
-    </div>
-
-    <div id="references" class="content">
+<!-- نافذة المراجع -->
+<div id="references" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('references')">&times;</span>
         <h3>المراجع</h3>
-        <table class="references-table">
-            <tr>
-                <th>اسم المرجع</th>
-                <th>الوظيفة</th>
-                <th>رقم الهاتف</th>
-                <th>البريد الإليكتروني</th>
-            </tr>
-            <tr>
-                <td>الدكتور محمد العلي</td>
-                <td>مدير المشروع</td>
-                <td>123456789</td>
-                <td>mohammed@example.com</td>
-            </tr>
-            <tr>
-                <td>الأستاذة سارة الفتاة</td>
-                <td>منسقة المشاريع</td>
-                <td>987654321</td>
-                <td>sarah@example.com</td>
-            </tr>
+        <table>
+            <thead>
+                <tr>
+                    <th>الهاتف</th>
+                    <th>البريد الإلكتروني</th>
+                    <th>المسمى الوظيفي</th>
+                    <th>الاسم</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="tel:+352681581497">+352681581497</a></td>
+                    <td><a href="mailto:zaher.alahmad@sema-sy.org">zaher.alahmad@sema-sy.org</a></td>
+                    <td>Senior Human Resources</td>
+                    <td>Zaher alahmad</td>
+                </tr>
+                <tr>
+                    <td><a href="tel:+963951392899">+963951392899</a></td>
+                    <td><a href="mailto:b.alhafez@sema-sy.org">b.alhafez@sema-sy.org</a></td>
+                    <td>Field HR Assistant</td>
+                    <td>Basel Alhafez</td>
+                </tr>
+                <tr>
+                    <td><a href="tel:+963954924526">+963954924526</a></td>
+                    <td><a href="mailto:a.kadour@sema-sy.org">a.kadour@sema-sy.org</a></td>
+                    <td>Nutrition Coordinator</td>
+                    <td>Ali Kadour</td>
+                </tr>
+                <tr>
+                    <td><a href="tel:+905362385715">+905362385715</a></td>
+                    <td><a href="mailto:a.alqarat@sema-sy.org">a.alqarat@sema-sy.org</a></td>
+                    <td>Coordinator Medical</td>
+                    <td>Abdulmughaith Al-Qarat</td>
+                </tr>
+                <tr>
+                    <td><a href="tel:+963994550754">+963994550754</a></td>
+                    <td><a href="mailto:o.mahfoud@sema-sy.org">o.mahfoud@sema-sy.org</a></td>
+                    <td>M&E - Officer</td>
+                    <td>Osama Mahfoud</td>
+                </tr>
+                <tr>
+                    <td><a href="tel:+905313347914">+905313347914</a></td>
+                    <td><a href="mailto:Mohamadkhaled1991moha@gmail.com">Mohamadkhaled1991moha@gmail.com</a></td>
+                    <td>Admin Manager</td>
+                    <td>Mohamad Al-khaled</td>
+                </tr>
+            </tbody>
         </table>
     </div>
+</div>
 
-    <script>
-        function toggleContent(contentId) {
-            const content = document.getElementById(contentId);
-            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+
+<!-- نافذة الشهادات التدريبية -->
+<div id="projects" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('projects')">&times;</span>
+        <h3>الشهادات التدريبية</h3>
+        <ul>
+            <li>شهادة تحليل البيانات من Google</li>
+            <li>شهادة إدارة البيانات من Microsoft</li>
+            <li>شهادة الدعم الفني من Google</li>
+            <li>يونيو 2024 - كورسيرا: مساعد موارد بشرية من HRCI</li>
+            <li>يونيو 2024 - كورسيرا: مساعد ميداني لمراقبة وتقييم</li>
+            <li>يونيو 2024 - كورسيرا: العمل بذكاء باستخدام مايكروسوفت إكسل</li>
+            <li>يونيو 2024 - كورسيرا: أخصائي دعم تكنولوجيا المعلومات من Google</li>
+            <li>يونيو 2024 - كورسيرا: التحليلات التجارية باستخدام إكسل: من الأساسيات إلى المتقدم</li>
+            <li>يونيو 2024 - كورسيرا: التصور البياني ولوحات المعلومات باستخدام إكسل وCognos</li>
+            <li>مارس 2020 - كورسيرا: (GBV)-(PSC)-(PSEA)</li>
+            <li>مايو 2023 – الرابطة الطبية للمغتربين السوريين (سيما): DHIS2 - <a href="https://drive.google.com/drive/folders/1EWQzAzpMsnBo00-nCOMT3QaMhUlg_lEf">link</a></li>
+            <li>مايو 2023 - الرابطة الطبية للمغتربين السوريين (سيما): (CHW – IYCF/RRT/OTP/ITP/TSFP/CMAM)</li>
+        </ul>
+    </div>
+</div>
+
+
+<!-- نافذة المهارات -->
+<div id="skills" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('skills')">&times;</span>
+        <h3>المهارات - اللغات</h3>
+        <ul>
+            <h3>اللغات</h3>
+            <li>اللغة العربية: الأم</li>
+            <li>اللغة الإنجليزية: متقدم</li> 
+            <li>اللغة التركية: متوسط</li>
+            <h3>المهارات</h3>
+            <li>DHIS2: متقدم</li>
+            <li>Power BI-Power Query: متمكن</li>
+            <li>MS Office: متقدم</li>
+            <li>Kobo Toolbox: متمكن</li>
+            <li>Google Forms: متمكن</li>
+            <li>GIS: متمكن</li>
+            <li>HTML - CSS - JavaScript - PHP: متمكن</li>
+            <li>Akvofloe & Commcare: متقدم</li>
+            <li>ODK Collect: متمكن</li>
+            <li>Python (Data Analysis): متمكن</li>
+            <li>تحليل البيانات باستخدام R: متمكن</li>
+            <li>أدوات تصور البيانات (مثل Tableau): متمكن</li>
+            <li>إدارة قواعد البيانات (SQL): متمكن</li>
+            <li>تطوير التطبيقات باستخدام Flutter: متمكن</li>
+            <li>تطوير نظم المعلومات الجغرافية (GIS): متمكن</li>
+            <li>تحليل البيانات الكبيرة (Big Data): متمكن</li>
+            <li>تحليل البيانات الإحصائية باستخدام SPSS: متمكن</li>
+            <li>برمجة API وRESTful Services: متمكن</li>
+            <li>إدارة مشاريع Agile وScrum: متمكن</li>
+            <li>التحقق من البيانات وضمان الجودة: متمكن</li>
+            <li>تطوير واجهات المستخدم UI/UX: متمكن</li>
+            <li>التواصل الفعال وتقديم العروض التقديمية: متمكن</li>
+            <li>إدارة المشاريع الصحية: متمكن</li>
+        </ul>
+    </div>
+</div>
+
+
+<script>
+    function toggleMode() {
+        const body = document.body;
+        body.classList.toggle('night-mode');
+        const isNight = body.classList.contains('night-mode');
+        document.getElementById('mode-toggle').innerHTML = isNight ? '🌙' : '🌞';
+    }
+
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = 'flex';
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
+
+    function toggleExperience() {
+        const experienceList = document.getElementById('experience');
+        if (experienceList.style.display === 'block') {
+            experienceList.style.display = 'none';
+        } else {
+            experienceList.style.display = 'block';
         }
+    }
 
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'block';
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        function updateDateTime() {
-            const now = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
-            const date = now.toLocaleDateString('ar-EG', options);
-            const time = now.toLocaleTimeString('ar-EG');
-            document.getElementById('dateTimeDisplay').innerText = `${date} - ${time}`;
-        }
-
-        setInterval(updateDateTime, 1000);
-        updateDateTime();
-    </script>
+    function updateDateTime() {
+        const now = new Date();
+        document.getElementById('date-time').innerHTML = now.toLocaleString('ar-EG', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false,
+        });
+    }
+    setInterval(updateDateTime, 1000);
+</script>
 </body>
 </html>
