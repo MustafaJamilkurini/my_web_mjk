@@ -167,6 +167,38 @@
         th {
             background-color: #f2f2f2;
         }
+        /* تنسيق النافذة */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* تنسيق الخطوط البيانية الصغيرة */
+.progress-bar.small-bar {
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    padding: 1px;
+    display: inline-block;
+    margin-left: 10px;
+    width: 2cm; /* عرض الخط 2 سم */
+    height: 8px; /* ارتفاع الخط */
+}
+
+.progress.small-progress {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.5s;
+}
+
+/* تنسيق النصوص بجانب الخطوط */
+li {
+    display: flex;
+    align-items: center;
+}
+
     </style>
 </head>
 <body class="day-mode">
@@ -374,36 +406,142 @@
         <h3>المهارات - اللغات</h3>
         <ul>
             <h3>اللغات</h3>
-            <li>اللغة العربية: الأم</li>
-            <li>اللغة الإنجليزية: متقدم</li> 
-            <li>اللغة التركية: متوسط</li>
+            <li>اللغة العربية: الأم
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 100%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>اللغة الإنجليزية: متقدم
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 85%; background-color: #2196F3;"></div>
+                </div>
+            </li>
+            <li>اللغة التركية: متوسط
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 60%; background-color: #FFC107;"></div>
+                </div>
+            </li>
+
             <h3>المهارات</h3>
-            <li>DHIS2: متقدم</li>
-            <li>Power BI-Power Query: متمكن</li>
-            <li>MS Office: متقدم</li>
-            <li>Kobo Toolbox: متمكن</li>
-            <li>Google Forms: متمكن</li>
-            <li>GIS: متمكن</li>
-            <li>HTML - CSS - JavaScript - PHP: متمكن</li>
-            <li>Akvofloe & Commcare: متقدم</li>
-            <li>ODK Collect: متمكن</li>
-            <li>Python (Data Analysis): متمكن</li>
-            <li>تحليل البيانات باستخدام R: متمكن</li>
-            <li>أدوات تصور البيانات (مثل Tableau): متمكن</li>
-            <li>إدارة قواعد البيانات (SQL): متمكن</li>
-            <li>تطوير التطبيقات باستخدام Flutter: متمكن</li>
-            <li>تطوير نظم المعلومات الجغرافية (GIS): متمكن</li>
-            <li>تحليل البيانات الكبيرة (Big Data): متمكن</li>
-            <li>تحليل البيانات الإحصائية باستخدام SPSS: متمكن</li>
-            <li>برمجة API وRESTful Services: متمكن</li>
-            <li>إدارة مشاريع Agile وScrum: متمكن</li>
-            <li>التحقق من البيانات وضمان الجودة: متمكن</li>
-            <li>تطوير واجهات المستخدم UI/UX: متمكن</li>
-            <li>التواصل الفعال وتقديم العروض التقديمية: متمكن</li>
-            <li>إدارة المشاريع الصحية: متمكن</li>
+            <li>DHIS2: متقدم
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 85%; background-color: #2196F3;"></div>
+                </div>
+            </li>
+            <li>Power BI-Power Query: متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>MS Office: متقدم
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 85%; background-color: #2196F3;"></div>
+                </div>
+            </li>
+            <li>Kobo Toolbox: متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>Google Forms: متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>GIS: متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>HTML - CSS - JavaScript - PHP: متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>Akvofloe & Commcare: متقدم
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 85%; background-color: #2196F3;"></div>
+                </div>
+            </li>
+            <li>ODK Collect: متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>Python (Data Analysis): متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>تحليل البيانات باستخدام R: متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>أدوات تصور البيانات (مثل Tableau): متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>إدارة قواعد البيانات (SQL): متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>تطوير التطبيقات باستخدام Flutter: متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>تطوير نظم المعلومات الجغرافية (GIS): متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>تحليل البيانات الكبيرة (Big Data): متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>تحليل البيانات الإحصائية باستخدام SPSS: متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>برمجة API وRESTful Services: متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>إدارة مشاريع Agile وScrum: متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>التحقق من البيانات وضمان الجودة: متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>تطوير واجهات المستخدم UI/UX: متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>التواصل الفعال وتقديم العروض التقديمية: متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
+            <li>إدارة المشاريع الصحية: متمكن
+                <div class="progress-bar small-bar">
+                    <div class="progress small-progress" style="width: 95%; background-color: #4CAF50;"></div>
+                </div>
+            </li>
         </ul>
     </div>
 </div>
+
 
 
 <script>
