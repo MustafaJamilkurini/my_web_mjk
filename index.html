@@ -272,7 +272,32 @@ footer {
     margin-top: 10px; /* إضافة مسافة أعلى */
     font-weight: bold; /* لجعل الخط عريضًا */
 }
-        
+   .location-container {
+    display: flex;
+    align-items: center; /* لمحاذاة العناصر في المنتصف */
+}
+
+.pulse-icon {
+    color: red; /* لون الأيقونة */
+    font-size: 20px; /* حجم الأيقونة */
+    margin-right: 10px; /* مسافة بين الأيقونة والنص */
+    animation: pulse 1s infinite; /* إضافة تأثير النبض */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}     
     </style>
 </head>
 <body class="day-mode">
@@ -280,12 +305,15 @@ footer {
 <header>
     <h1>السيرة الذاتية - CV</h1>
     <div class="date-time" id="date-time"></div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </header>
 
 <div class="profile">
     <img src="mustafa.jpg" alt="معلومات التواصل Contact information">
     <div class="contact">
         <h2>مصطفى جميل كوريني</h2>
+         <i class="fas fa-map-marker-alt pulse-icon"></i>
         <p class="site-location">الموقع: سلقين - إدلب - سوريا</p>
         <div class="contact-icon">
             <a href="mailto:mustafakurini@gmail.com">📧</a>
