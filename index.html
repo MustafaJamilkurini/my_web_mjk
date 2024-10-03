@@ -201,16 +201,15 @@
         th {
             background-color: #f2f2f2;
         }
-        /* تنسيق الحاوية الأساسية */
-.profile {
+       /* تنسيق الحاوية الأساسية */
+        .profile {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
+    margin-bottom: 30px;
+    background-color: transparent; /* اجعل الخلفية شفافة */
+    box-shadow: none; /* إزالة الظل إذا كان موجودًا */
 }
 
 .contact {
@@ -263,7 +262,12 @@ footer {
   
     padding: 10px 0;    /* إضافة حشوة من الأعلى والأسفل */
 }
-
+.site-location {
+    font-size: 20px; /* يمكنك تغيير الرقم لزيادة أو تقليل الحجم */
+    color: #000000; /* يمكنك تغيير اللون هنا */
+    margin-top: 10px; /* إضافة مسافة أعلى */
+    font-weight: bold; /* لجعل الخط عريضًا */
+}
         
     </style>
 </head>
